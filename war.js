@@ -1,4 +1,4 @@
-// Define a Card class 
+// Card class holding the value and suit of a card.
 class Card {
 
   // use static lists to define which values and suits are acceptable
@@ -27,7 +27,7 @@ class Card {
   }
 }
 
-// Define a Deck class that holds an array of Cards
+// Deck class that holds an array of Cards
 class Deck {
 
   // define an array of Cards
@@ -51,9 +51,11 @@ class Deck {
   }
 }
 
-// Player class that holds a name,
-// a hand, and points.
+// Player class that holds a name, a hand (array of Cards), and points.
 class Player {
+
+  // consructor that assigns a name and 
+  // initializes hand and points
   constructor(name) {
     this.name = name;
     this.hand = [];
@@ -84,20 +86,6 @@ function dealCards(deck, player0, player1) {
     player0.receiveCard(deck.cards[i]);
     player1.receiveCard(deck.cards[i + 1]);
   }
-}
-
-// Function to determine the winner of the
-// game and display the results.
-function displayWinner(player0, player1) {
-  if (player0.points > player1.points)
-    console.log(
-      `The winner is ${player0.name} with ${player0.points} points. ${player1.name} had ${player1.points} points.`
-    );
-  else if (player1.points > player0.points)
-    console.log(
-      `The winner is ${player1.name} with ${player1.points} points. ${player0.name} had ${player0.points} points.`
-    );
-  else console.log("It was a tie game.");
 }
 
 // Function to simulate the game of War
@@ -137,11 +125,32 @@ function playWar(player0, player1) {
   }
 }
 
+// Function to compare the points for 
+// each player and declare the winner.
+function displayWinner(player0, player1) {
+  if (player0.points > player1.points)
+    console.log(
+      `The winner is ${player0.name} with ${player0.points} points. ${player1.name} had ${player1.points} points.`
+    );
+  else if (player1.points > player0.points)
+    console.log(
+      `The winner is ${player1.name} with ${player1.points} points. ${player0.name} had ${player0.points} points.`
+    );
+  else console.log("It was a tie game.");
+}
+
+// Define 2 Players and a Deck.
 let player0 = new Player("Tom");
 let player1 = new Player("Joe");
 let deck = new Deck();
 
+// Shuffles the Deck and deals the Cards to the Players.
 dealCards(deck, player0, player1);
+
+// Simulates the 2 Players playing War.
 playWar(player0, player1);
+
+// Compares the points for each Player 
+// and announces the winner.
 displayWinner(player0, player1);
 
